@@ -1,103 +1,170 @@
-import Image from "next/image";
+import Link from "next/link";
+import { headers } from "next/headers";
+import { auth } from "@/lib/auth";
+import { signOutAction } from "./actions/auth";
+import { Button } from "./components/Button";
 
-export default function Home() {
+export default async function Home() {
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-200 via-blue to-indigo-100">
+        {/* Hero */}
+        <header className="relative overflow-hidden">
+          <div className="absolute inset-0 pointer-events-none">
+            <div className="absolute -top-24 -left-24 h-72 w-72 rounded-full bg-indigo-200/40 blur-3xl" />
+            <div className="absolute -bottom-24 -right-24 h-72 w-72 rounded-full bg-blue-200/40 blur-3xl" />
+          </div>
+
+          <main className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+            <div className="text-center">
+              <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
+                CodeClash
+                <span className="block text-[var(--app-tint)]">
+                  Real‑time Coding Duels
+                </span>
+              </h1>
+
+              <p className="mt-6 text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">
+                Challenge friends on live Codeforces problems with timers,
+                synchronized states, and fair‑play tools in a focused arena.
+              </p>
+
+              <div className="mt-12 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-4xl mx-auto">
+                <FeatureCard
+                  title="Codeforces synced"
+                  desc="Pick rated problems with tags and difficulty, auto‑synced to both players."
+                />
+                <FeatureCard
+                  title="Built-in timer"
+                  desc="Fair countdown per duel; pause, resume, and tiebreak rules supported."
+                />
+                <FeatureCard
+                  title="Filter problems"
+                  desc="Solve problems at your comfort rating with tag and difficulty filters."
+                />
+              </div>
+                <div className="mt-10 width-full">
+                  <div className="max-w-md mx-auto flex items-center justify-center gap-4">
+                    <Link
+                      href="/signin"
+                      className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-base font-medium text-white bg-[var(--app-tint)]"
+                    >
+                      Sign in to Duel
+                    </Link>
+                    <Link
+                      href="/signup"
+                      className="inline-flex items-center justify-center px-6 py-3 rounded-lg text-base font-medium text-gray-800 bg-white border border-gray-300 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition-colors"
+                    >
+                      Create an Account
+                    </Link>
+                  </div>
+                </div>
+            </div>
+          </main>
+        </header>
+        <section className="border-t border-gray-200 bg-white/60">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+            <div className="grid md:grid-cols-2 gap-10 items-center">
+              <div>
+                <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                  Practice that feels like a match
+                </h2>
+                <p className="mt-4 text-gray-600">
+                  Queue with a friend, choose constraints, and track penalties
+                  and submissions on a shared scoreboard.
+                </p>
+                <div className="mt-6 flex gap-3">
+                  <Link
+                    href="/signin"
+                    className="inline-flex items-center justify-center px-5 py-2.5 rounded-md text-sm font-medium text-white bg-[var(--app-tint)]"
+                  >
+                    Start a Duel
+                  </Link>
+                </div>
+              </div>
+
+              <div className="relative">
+                <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-medium text-gray-700">
+                      Timer
+                    </span>
+                    <span className="text-sm text-gray-500">00:25:37</span>
+                  </div>
+                  <div className="mt-4 h-2 w-full rounded bg-gray-100">
+                    <div className="h-2 w-2/3 rounded bg-[var(--app-tint)]" />
+                  </div>
+                  <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
+                    <div className="rounded-lg border border-gray-200 p-3">
+                      <div className="font-medium text-gray-800">You</div>
+                      <div className="mt-1 text-gray-600">1 AC • 2 WA</div>
+                    </div>
+                    <div className="rounded-lg border border-gray-200 p-3">
+                      <div className="font-medium text-gray-800">Opponent</div>
+                      <div className="mt-1 text-gray-600">1 AC • 1 WA</div>
+                    </div>
+                  </div>
+                  <div className="mt-6 rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
+                    Current: 158B — Training Schedule (CF Div2) • 1200
+                  </div>
+                </div>
+                <div className="pointer-events-none absolute -inset-x-6 -inset-y-6 -z-10 bg-gradient-to-tr from-indigo-200/40 to-blue-200/40 blur-2xl rounded-2xl" />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="bg-gray-950 text-gray-300">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div className="text-center">
+              <h3 className="text-lg font-semibold text-white">CodeClash</h3>
+              <p className="mt-2 text-gray-400">
+                A focused arena for head‑to‑head problem solving with Codeforces
+                integration.
+              </p>
+              <div className="mt-6 flex justify-center gap-6">
+                <Link href="/" className="hover:text-white transition-colors">
+                  Home
+                </Link>
+              </div>
+            </div>
+            <div className="mt-8 text-center text-xs text-gray-500">
+              © {new Date().getFullYear()} CodeClash. All rights reserved.
+            </div>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+
+  // If there is a session: show a minimal authenticated landing or redirect pattern
+  // If you want to redirect instead, you can use next/navigation redirect here.
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
-        </div>
+    <div className="min-h-screen bg-white">
+      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <h1 className="text-3xl font-bold text-gray-900">
+          Welcome back, {session.user?.name ?? "duelist"}!
+        </h1>
+        <p className="mt-3 text-gray-600">
+          Head to your dashboard to start or join a duel.
+        </p>
+        <form action={signOutAction}>
+          <Button>Logout</Button>
+        </form>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+    </div>
+  );
+}
+
+function FeatureCard({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="rounded-xl border border-gray-200 bg-white/80 p-4 text-left shadow-sm">
+      <h3 className="text-sm font-semibold text-gray-900">{title}</h3>
+      <p className="mt-1 text-sm text-gray-600">{desc}</p>
     </div>
   );
 }

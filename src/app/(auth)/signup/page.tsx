@@ -2,6 +2,7 @@
 import { signUpAction } from "@/app/actions/auth";
 import { Input } from "../../components/Input";
 import { useState, useTransition } from "react";
+import { redirect } from "next/navigation";
 
 export default function SignUpPage() {
   const [error, setError] = useState<string | null>(null);
@@ -21,6 +22,9 @@ export default function SignUpPage() {
             const res = await signUpAction(formData);
             if(!res?.ok){
               setError(res.message ?? "Invalid input");
+            }
+            else{
+              redirect("/");
             }
           })
           

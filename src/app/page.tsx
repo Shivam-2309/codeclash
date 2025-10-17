@@ -207,7 +207,7 @@ return (
       </div>
 
       <form action={signOutAction} className="mt-10">
-        <Button>Logout</Button>
+        <Button className="bg-[var(--app-tint)]">Logout</Button>
       </form>
     </main>
   </div>

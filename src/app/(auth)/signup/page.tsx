@@ -18,7 +18,6 @@ export default function SignUpPage() {
         <form action={(formData) => 
           startTransition(async () => {
             setError(null);
-            console.log("action1");
             const res = await signUpAction(formData);
             if(!res?.ok){
               setError(res.message ?? "Invalid input");
@@ -26,9 +25,8 @@ export default function SignUpPage() {
             else{
               redirect("/");
             }
-          })
-          
-          } className="flex flex-col gap-2">
+          })} 
+          className="flex flex-col gap-2">
           <div className="flex flex-col gap-1">
             <label htmlFor="name" className="text-sm font-medium text-gray-700">
               Name

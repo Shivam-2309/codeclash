@@ -24,7 +24,6 @@ export async function signUpAction(formData: FormData) {
         }
 
         return { ok: true };
-        redirect("/");
   } catch (err: any) {
     return { ok: false, code: "exception", message: err?.message || "Unexpected error" };
   }
@@ -34,12 +33,22 @@ export async function signInAction(formData: FormData) {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    await auth.api.signInEmail({
-        body: {
-            email,
-            password,
-        },
-    });
+    try {
+        const res = await auth.api.signInEmail({
+            body: {
+                email,
+                password,
+            },
+        });
+
+        if("error" in res && res.error) {
+            return {ok: false, message: "Validation Error"};
+        }
+        return { ok: true };
+    }
+    catch(err : any){
+        return { ok: false, code: "exception", message: err?.message || "Unexpected error" };
+    }
 
     redirect("/");
 }

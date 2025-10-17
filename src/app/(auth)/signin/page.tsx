@@ -4,9 +4,9 @@ import { Button } from "../../components/Button";
 
 export default function SignInPage() {
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-50 via-white to-blue-100">
+    <div className="flex h-151 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
       <div className="bg-white shadow-lg rounded-xl px-8 py-10 w-full max-w-md border border-gray-100">
-        <h1 className="text-3xl font-semibold text-center text-gray-800 mb-6">
+        <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
           Sign in to your account
         </h1>
         <form action={signInAction} className="flex flex-col gap-4">
@@ -26,7 +26,7 @@ export default function SignInPage() {
           />
           <Button
             type="submit"
-            className="mt-2 bg-blue-600 text-white hover:bg-blue-700 transition font-medium rounded-md py-2"
+            className="mt-2 bg-[var(--app-tint)] text-white hover:bg-indigo-200 transition font-medium rounded-md py-2"
           >
             Sign In
           </Button>

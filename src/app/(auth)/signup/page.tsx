@@ -8,7 +8,7 @@ export default function SignUpPage() {
   const [error, setError] = useState<string | null>(null);
   const [pending, startTransition] = useTransition();
   return (
-    <div className="flex h-151 items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-2 ">
+    <div className="flex h-151 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
       <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white px-8 py-6 shadow-lg">
         <div className="mb-8 text-center">
           <h1 className="text-2xl font-semibold text-gray-800">Create account</h1>

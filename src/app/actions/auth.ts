@@ -8,15 +8,26 @@ export async function signUpAction(formData: FormData) {
     const password = formData.get("password") as string;
     const name = formData.get("name") as string;
 
-    await auth.api.signUpEmail({
-        body: {
-            email,
-            password,
-            name,
-        },
-    });
+    console.log("email: ", email);
+    console.log("formData", formData);
 
-    redirect("/");
+    try {
+        const res = await auth.api.signUpEmail({
+        body: { email, password, name },
+        });
+
+        console.log("ERROR", res);
+
+        if ("error" in res && res.error) {
+            // Validation error path (e.g., invalid_email)
+            return { ok: false, message: "Validation Error" };
+        }
+
+        return { ok: true };
+        redirect("/");
+  } catch (err: any) {
+    return { ok: false, code: "exception", message: err?.message || "Unexpected error" };
+  }
 }
 
 export async function signInAction(formData: FormData) {

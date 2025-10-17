@@ -29,14 +29,14 @@ export default function Navigation() {
             </span>
           </Link>
 
-          <nav className="flex items-center space-x-6">
+          <Link href="/" className="flex items-center space-x-6">
             <Button
                 type="submit"
                 className="mt-2 rounded-md bg-[var(--app-tint)] py-2 text-white transition hover:bg-[color-mix(in oklab, var(--app-tint) 88%, black)]"
               >
               Home
             </Button>
-          </nav>
+          </Link>
         </div>
       </div>
     </header>

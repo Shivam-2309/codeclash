@@ -1,19 +1,31 @@
-// app/(auth)/signup/page.tsx
+"use client"
 import { signUpAction } from "@/app/actions/auth";
 import { Input } from "../../components/Input";
-import { Button } from "../../components/Button";
+import { useState, useTransition } from "react";
 
 export default function SignUpPage() {
+  const [error, setError] = useState<string | null>(null);
+  const [pending, startTransition] = useTransition();
   return (
-    <div className="flex min-h-screen items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-4">
-      <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white px-8 py-10 shadow-lg">
+    <div className="flex h-151 items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-emerald-100 px-2 ">
+      <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white px-8 py-6 shadow-lg">
         <div className="mb-8 text-center">
-          <h1 className="text-3xl font-semibold text-gray-800">Create account</h1>
+          <h1 className="text-2xl font-semibold text-gray-800">Create account</h1>
           <p className="mt-2 text-sm text-gray-500">Start your journey in seconds</p>
         </div>
 
-        <form action={signUpAction} className="flex flex-col gap-4">
-          <div className="flex flex-col gap-1.5">
+        <form action={(formData) => 
+          startTransition(async () => {
+            setError(null);
+            console.log("action1");
+            const res = await signUpAction(formData);
+            if(!res?.ok){
+              setError(res.message ?? "Invalid input");
+            }
+          })
+          
+          } className="flex flex-col gap-2">
+          <div className="flex flex-col gap-1">
             <label htmlFor="name" className="text-sm font-medium text-gray-700">
               Name
             </label>
@@ -60,13 +72,30 @@ export default function SignUpPage() {
               Use at least 8 characters, with a mix of letters and numbers.
             </p>
           </div>
+          
+        <button
+          disabled={pending}
+          type="submit"
+          className={
+            "mt-2 w-full rounded-md px-4 py-2 text-white " +
+            "bg-[var(--app-tint)] transition " +
+            "hover:bg-[color-mix(in oklab, var(--app-tint) 88%, black)] " +
+            "disabled:opacity-60 disabled:cursor-not-allowed"
+          }
+        >
+          {pending ? "Signing up..." : "Sign up"}
+        </button>
 
-          <Button
-            type="submit"
-            className="mt-2 rounded-md bg-[var(--app-tint)] py-2 text-white transition hover:bg-[color-mix(in oklab, var(--app-tint) 88%, black)]"
+        {error && (
+          <p
+            aria-live="polite"
+            role="alert"
+            className="mt-3 rounded-md border border-red-200 bg-red-50 px-3 py-2 text-sm text-red-700"
           >
-            Sign Up
-          </Button>
+            {error}
+          </p>
+        )}
+
         </form>
 
         <div className="mt-6">

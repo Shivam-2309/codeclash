@@ -3,6 +3,7 @@ import { headers } from "next/headers";
 import { auth } from "@/lib/auth";
 import NavigationUser from "@/app/components/NavigationUser";
 import Navigation from "./components/Navigation";
+import { Slider } from "@/components/ui/slider"
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -90,25 +91,8 @@ export default async function Home() {
 
                 <div className="relative">
                   <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-                    <div className="flex items-center justify-between">
-                      <span className="text-sm font-medium text-gray-700">
-                        Timer
-                      </span>
-                      <span className="text-sm text-gray-500">00:25:37</span>
-                    </div>
-                    <div className="mt-4 h-2 w-full rounded bg-gray-100">
-                      <div className="h-2 w-2/3 rounded bg-[var(--app-tint)]" />
-                    </div>
-                    <div className="mt-6 grid grid-cols-2 gap-4 text-sm">
-                      <div className="rounded-lg border border-gray-200 p-3">
-                        <div className="font-medium text-gray-800">You</div>
-                        <div className="mt-1 text-gray-600">1 AC • 2 WA</div>
-                      </div>
-                      <div className="rounded-lg border border-gray-200 p-3">
-                        <div className="font-medium text-gray-800">Opponent</div>
-                        <div className="mt-1 text-gray-600">1 AC • 1 WA</div>
-                      </div>
-                    </div>
+                    <div className="text-2xl text-gray-500">Timer</div>
+                    <Slider defaultValue={[33]} max={100} step={1} />
                     <div className="mt-6 rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
                       Current: 158B — Training Schedule (CF Div2) • 1200
                     </div>

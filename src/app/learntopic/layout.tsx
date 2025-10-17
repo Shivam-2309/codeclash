@@ -1,4 +1,3 @@
-// app/dashboard/layout.tsx
 import NavigationUser from "@/app/components/NavigationUser";
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {

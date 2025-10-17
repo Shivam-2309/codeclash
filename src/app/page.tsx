@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import NavigationUser from "@/app/components/NavigationUser";
 import Navigation from "./components/Navigation";
 import { Slider } from "@/components/ui/slider"
+import { CardBody, CardContainer, CardItem  } from "@/components/ui/3d-card"
 
 export default async function Home() {
   const session = await auth.api.getSession({
@@ -91,7 +92,7 @@ export default async function Home() {
 
                 <div className="relative">
                   <div className="rounded-xl border border-gray-200 bg-white shadow-sm p-4">
-                    <div className="text-2xl text-gray-500">Timer</div>
+                    <div className="text-2xl text-gray-50">Timer</div>
                     <Slider defaultValue={[33]} max={100} step={1} />
                     <div className="mt-6 rounded-lg bg-gray-50 p-3 text-sm text-gray-700">
                       Current: 158B — Training Schedule (CF Div2) • 1200
@@ -104,21 +105,102 @@ export default async function Home() {
           </section>
 
           <footer className="bg-gray-950 text-gray-300">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-              <div className="text-center">
-                <h3 className="text-lg font-semibold text-white">CodeClash</h3>
-                <p className="mt-2 text-gray-400">
-                  A focused arena for head‑to‑head problem solving with Codeforces
-                  integration.
-                </p>
-                <div className="mt-6 flex justify-center gap-6">
-                  <Link href="/" className="hover:text-white transition-colors">
-                    Home
-                  </Link>
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
+                <div>
+                  <div className="flex items-center gap-3">
+                    <div className="size-10 rounded-lg bg-white/5 grid place-items-center ring-1 ring-white/10">
+                      <span className="text-white text-sm">CC</span>
+                    </div>
+                    <h3 className="text-lg font-semibold text-white">CodeClash</h3>
+                  </div>
+                  <p className="mt-3 text-gray-400">
+                    A focused arena for head‑to‑head problem solving with Codeforces integration, timers, and fair‑play tools.
+                  </p>
+                </div>
+
+                <nav className="grid grid-cols-2 gap-3 md:justify-items-center">
+                  <div>
+                    <h4 className="text-sm font-medium text-white/90">Product</h4>
+                    <ul className="mt-3 space-y-2 text-sm">
+                      <li>
+                        <Link href="/" className="hover:text-white transition-colors">
+                          Home
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/signin" className="hover:text-white transition-colors">
+                          Sign in
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/signup" className="hover:text-white transition-colors">
+                          Create account
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/signup" className="hover:text-white transition-colors">
+                          Dashboard
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-medium text-white/90">Resources</h4>
+                    <ul className="mt-3 space-y-2 text-sm">
+                      <li>
+                        <Link href="/learntopic" className="hover:text-white transition-colors">
+                          Learn a topic
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/docs" className="hover:text-white transition-colors">
+                          Docs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/support" className="hover:text-white transition-colors">
+                          Support
+                        </Link>
+                      </li>
+                      <li>
+                        <Link href="/privacy" className="hover:text-white transition-colors">
+                          Privacy
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                </nav>
+
+                <div className="justify-self-center sm:justify-self-end">
+                  <div className="rounded-xl border border-white/10 bg-white backdrop-blur-md p-4 shadow-[0_10px_30px_rgba(0,0,0,0.25)]">
+                    <CardContainer className="inter-var">
+                        <CardItem translateZ="90" className="w-full">
+                          <img
+                            src="/swords_logo.png"
+                            alt="CodeClash"
+                            className="w-56 h-28 object-contain mx-auto drop-shadow"
+                          />
+                        </CardItem>
+                    </CardContainer>
+                  </div>
                 </div>
               </div>
-              <div className="mt-8 text-center text-xs text-gray-500">
-                © {new Date().getFullYear()} CodeClash. All rights reserved.
+              <div className="mt-10 border-t border-white/10 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+                <p className="text-xs text-gray-500">
+                  © {new Date().getFullYear()} CodeClash. All rights reserved.
+                </p>
+                <div className="flex items-center gap-4 text-sm">
+                  <Link href="https://x.com" className="text-gray-400 hover:text-white transition-colors" aria-label="X">
+                    X
+                  </Link>
+                  <Link href="https://github.com" className="text-gray-400 hover:text-white transition-colors" aria-label="GitHub">
+                    GitHub
+                  </Link>
+                  <Link href="mailto:support" className="text-gray-400 hover:text-white transition-colors" aria-label="Email">
+                    Email
+                  </Link>
+                </div>
               </div>
             </div>
           </footer>

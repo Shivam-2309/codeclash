@@ -11,7 +11,7 @@ export default function SignUpPage() {
   return (
     <>
       <Navigation />
-      <div className="flex h-151 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
+      <div className="flex h-159 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
         <div className="w-full max-w-md rounded-xl border border-gray-100 bg-white px-8 py-6 shadow-lg">
           <div className="mb-8 text-center">
             <h1 className="text-2xl font-semibold text-gray-800">Create account</h1>

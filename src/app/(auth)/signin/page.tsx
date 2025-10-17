@@ -12,7 +12,7 @@ export default function SignInPage() {
   return (
       <>
       <Navigation />
-      <div className="flex h-151 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
+      <div className="flex h-159 items-center justify-center bg-gradient-to-br from-[var(--app-tint] via-white to-[var(--app-tint)] ">
         <div className="bg-white shadow-lg rounded-xl px-8 py-10 w-full max-w-md border border-gray-100">
           <h1 className="text-2xl font-semibold text-center text-gray-800 mb-6">
             Sign in to your account
@@ -22,7 +22,6 @@ export default function SignInPage() {
                       setError(null);
                       const res = await signInAction(formData);
                       if(!res?.ok){
-                        // console.log("res: ", res);
                         setError(res.message ?? "Invalid input");
                       }
                       else{

@@ -143,21 +143,76 @@ export default async function Home() {
 
   // If there is a session: show a minimal authenticated landing or redirect pattern
   // If you want to redirect instead, you can use next/navigation redirect here.
-  return (
-    <div className="min-h-screen bg-white">
-      <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Welcome back, {session.user?.name ?? "duelist"}!
-        </h1>
-        <p className="mt-3 text-gray-600">
-          Head to your dashboard to start or join a duel.
-        </p>
-        <form action={signOutAction}>
-          <Button>Logout</Button>
-        </form>
-      </main>
-    </div>
-  );
+return (
+  <div className="min-h-screen bg-white">
+    <main className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <h1 className="text-3xl font-bold text-gray-900">
+        Welcome back, {session.user?.name ?? "duelist"}!
+      </h1>
+      <p className="mt-3 text-gray-600">
+        Head to your dashboard to start or join a duel.
+      </p>
+
+      <div className="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Top-left: Join Collaboration */}
+        <button
+          type="button"
+          className="rounded-lg border border-gray-200 p-6 text-left shadow-sm hover:shadow-lg transition-shadow bg-indigo-200"
+        >
+          <h2 className="text-xl font-semibold text-gray-900">
+            Join Collaboration
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Practice with a friend in a shared session.
+          </p>
+        </button>
+
+        {/* Top-right: Practice Solo */}
+        <button
+          type="button"
+          className="rounded-lg border border-gray-200 p-6 text-left shadow-sm hover:shadow-lg transition-shadow bg-indigo-200"
+        >
+          <h2 className="text-xl font-semibold text-gray-900">
+            Practice on your own
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Solo practice to sharpen your skills.
+          </p>
+        </button>
+
+        {/* Bottom: Join a Duel (full width) */}
+        <button
+          type="button"
+          className="md:col-span-2 rounded-lg border border-gray-200 p-6 text-left shadow-sm hover:shadow-lg transition-shadow bg-indigo-200"
+        >
+          <h2 className="text-xl font-semibold text-gray-900">
+            Join a duel
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Enter a head-to-head match and compete now.
+          </p>
+        </button>
+                {/* Bottom: Join a Duel (full width) */}
+        <button
+          type="button"
+          className="md:col-span-2 rounded-lg border border-gray-200 p-6 text-left shadow-sm hover:shadow-lg transition-shadow bg-indigo-200"
+        >
+          <h2 className="text-xl font-semibold text-gray-900">
+            Learn A Topic 
+          </h2>
+          <p className="mt-2 text-gray-600">
+            Enter the name of the topic and get videos and resources to learn it from the Internet.
+          </p>
+        </button>
+      </div>
+
+      <form action={signOutAction} className="mt-10">
+        <Button>Logout</Button>
+      </form>
+    </main>
+  </div>
+);
+
 }
 
 function FeatureCard({ title, desc }: { title: string; desc: string }) {

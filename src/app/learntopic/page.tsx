@@ -20,7 +20,7 @@ export default function LearnTopicPage({
   const error = searchParams?.error ?? "";
 
   return (
-    <main className="min-h-[70vh] bg-gradient-to-br from-amber-50 via-white to-indigo-100 py-12">
+    <main className="min-h-[70vh] py-12">
       <section className="mx-auto w-full max-w-2xl px-4">
         <div className="rounded-2xl border border-indigo-100 bg-white/80 p-8 shadow-sm backdrop-blur">
           <header className="mb-6">

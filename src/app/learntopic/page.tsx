@@ -57,20 +57,20 @@ export default function LearnTopicPage({
               </p>
             </div>
 
-<button
-  type="submit"
-  className="w-full rounded-lg px-4 py-2 text-white
-         bg-[var(--app-tint)]
-         shadow-sm transition
-         hover:bg-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_92%,white)]
-         active:bg-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_92%,black)]
-         active:scale-[0.98]
-         focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2
-         focus-visible:ring-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_35%,white)]
-         disabled:opacity-60 disabled:cursor-not-allowed"
->
-  Submit
-</button>
+            <button
+              type="submit"
+              className="w-full rounded-lg px-4 py-2 text-white
+                    bg-[var(--app-tint)]
+                    shadow-sm transition
+                    hover:bg-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_92%,white)]
+                    active:bg-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_92%,black)]
+                    active:scale-[0.98]
+                    focus:outline-none focus-visible:ring-4 focus-visible:ring-offset-2
+                    focus-visible:ring-[color-mix(in_oklab,var(--btn-bg,oklch(55%_0.16_260))_35%,white)]
+                    disabled:opacity-60 disabled:cursor-not-allowed"
+            >
+              Submit
+            </button>
 
             {error && (
               <p

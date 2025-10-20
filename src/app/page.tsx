@@ -109,8 +109,8 @@ export default async function Home() {
               <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-start">
                 <div>
                   <div className="flex items-center gap-3">
-                    <div className="size-10 rounded-lg bg-white/5 grid place-items-center ring-1 ring-white/10">
-                      <span className="text-white text-sm">CC</span>
+                    <div className="size-10 rounded-lg bg-white grid place-items-center ring-1 ring-white/10 p-1">
+                      <img src="/swords_logo.png" alt="" />
                     </div>
                     <h3 className="text-lg font-semibold text-white">CodeClash</h3>
                   </div>

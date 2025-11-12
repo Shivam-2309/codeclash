@@ -237,8 +237,8 @@ return (
         </button>
 
         {/* Top-right: Practice Solo */}
-        <button
-          type="button"
+        <Link
+          href="/solopractice"
           className="rounded-lg border border-gray-200 p-6 text-left shadow-sm hover:shadow-lg transition-shadow bg-indigo-200"
         >
           <h2 className="text-xl font-semibold text-gray-900">
@@ -247,7 +247,7 @@ return (
           <p className="mt-2 text-gray-600">
             Solo practice to sharpen your skills.
           </p>
-        </button>
+        </Link>
 
         {/* Bottom: Join a Duel (full width) */}
         <button

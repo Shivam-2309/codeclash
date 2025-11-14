@@ -103,7 +103,7 @@ const page = () => {
         </button>
       </div>
 
-      {rangeSelected && (
+      {rangeSelected && minRating <= maxRating && (
         <>
           <h2 className="text-xl font-semibold mt-10 mb-4">
             Select the tag of the problem statement you want to practice.
@@ -128,7 +128,12 @@ const page = () => {
         </>
       )}
 
-      {rangeSelected && (
+      {minRating > maxRating && (
+          <div>kya krte ho bhai</div>
+         ) 
+      }
+
+      {rangeSelected && (minRating <= maxRating) && (
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4">
             Problems with rating {minRating} to {maxRating}
